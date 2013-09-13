@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .jumbotron#upload
+    .container
+      h1 Upload a Slide
+
+      form(role='form')
+        .form-group
+          label(for='file-choice')
+            | アップロードするファイルを選択
+            | (*.ppt, *.key, *.pdf)
+          input#file-choice(type='file')
+        button.btn.btn-default(type='submit') Upload
+

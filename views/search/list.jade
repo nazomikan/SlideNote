@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  .container
+    .row
+      each val in [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        .col-lg-4
+          h2 Heading
+          p
+            | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
+            | commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+            | Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+          p
+            a.btn.btn-default(href='#') View details »

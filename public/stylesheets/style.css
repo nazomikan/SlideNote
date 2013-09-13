@@ -1,0 +1,8 @@
+.padding-left-none {
+  padding-left: 0 !important;
+}
+
+#upload #file-choice{
+  font-size: 80%;
+  line-height: 1em;
+}
