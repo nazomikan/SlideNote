@@ -2,7 +2,7 @@ extends ../layout
 
 block content
   .container
-    .col-lg-12
+    .col-md-10
       h2 #{row.title}
       #slide-player
         .thumbnail
@@ -11,12 +11,16 @@ block content
               img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}")
             else
               img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}", style="display: none;")
-          .caption
-            ul.pager
+          .caption(style="text-align: center;")
+            ul.pagination
               li
-                a#prev(href="#") Previous
+                a#first.glyphicon.glyphicon-fast-backward(href="#")
               li
-                a#next(href="#") Next
+                a#prev.glyphicon.glyphicon-backward(href="#")
+              li
+                a#next.glyphicon.glyphicon-forward(href="#")
+              li
+                a#last.glyphicon.glyphicon-fast-forward(href="#")
       p
         span author
         .well.well-sm

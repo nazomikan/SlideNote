@@ -11,8 +11,8 @@ Schema = new mongoose.Schema({
   id:          {type: Number, required: true},
   length:      {type: Number, required: true},
   title:       {type: String, required:true, trim: true},
-  author:      {type: String, required:true, trim: true},
-  description: {type: String, required: true, trim: true},
+  author:      {type: String, trim: true},
+  description: {type: String, trim: true},
   keyword:     [{type: String}],
   slides:      [{type: String}],
   updated:     {type: Date, default: Date.now}

@@ -4,6 +4,9 @@
   padding-left: 0 !important;
 }
 
+#upload {
+  font-size: 16px;
+}
 
 #upload .file {
   display: inline-block;
@@ -23,4 +26,8 @@
   margin: 0;
   font-size: 100px;
   cursor: pointer;
+}
+
+#slide-player .glyphicon {
+  font-size: 25px;
 }

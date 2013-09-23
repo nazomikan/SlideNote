@@ -11,6 +11,8 @@
   SlidePlayer.prototype.bindAllListeners = function () {
     this.root.on('click', '#prev', $.proxy(this, 'onPrev'));
     this.root.on('click', '#next', $.proxy(this, 'onNext'));
+    this.root.on('click', '#first', $.proxy(this, 'onFirst'));
+    this.root.on('click', '#last', $.proxy(this, 'onLast'));
   };
 
   SlidePlayer.prototype.onPrev = function (evt) {
@@ -38,6 +40,31 @@
     if (next.length) {
       current.hide();
       next.show();
+    }
+  };
+
+  SlidePlayer.prototype.onFirst = function (evt) {
+    evt.preventDefault();
+    var current = this.root.find('.slide:visible')
+      , top = this.root.find('.slide-0').show();
+      ;
+
+    if (top.length) {
+      current.hide();
+      top.show();
+    }
+  };
+
+  SlidePlayer.prototype.onLast = function (evt) {
+    evt.preventDefault();
+    var current = this.root.find('.slide:visible')
+      , len = this.root.find('.slide').length
+      , last = this.root.find('.slide-' + (len - 1)).show();
+      ;
+
+    if (last.length) {
+      current.hide();
+      last.show();
     }
   };
 

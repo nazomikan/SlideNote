@@ -97,7 +97,9 @@
 
       bar.css('width', '100%');
       clearTimeout(that.timer.convert);
-      location.href = data.link
+      setTimeout(function () {
+        location.href = data.link
+      }, 600);
     });
   };
 
