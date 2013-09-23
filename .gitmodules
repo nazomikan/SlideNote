@@ -1,3 +1,3 @@
-[submodule "vendor/meteor-pdf"]
-	path = vendor/meteor-pdf
-	url = https://github.com/peerlibrary/meteor-pdf.js.git
+[submodule "vendor/node-pdfreader"]
+	path = vendor/node-pdfreader
+	url = https://github.com/jviereck/node-pdfreader.git

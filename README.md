@@ -23,7 +23,7 @@ npm install
 bower install
 ```
 
-###Resolve submodule
+###Resolve submodule dependency
 ```
 git submodule init
 git submodule update
