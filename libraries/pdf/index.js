@@ -7,7 +7,7 @@ var path = require('path')
   , outputBasePath = path.resolve(__dirname, '../public' + srcPath)
   ;
 
-exports.convert = function (filePath, callback) {
+exports.toJpgs = function (filePath, callback) {
   var imagePath
     , outputPath
     , dirname = Date.now().toString()

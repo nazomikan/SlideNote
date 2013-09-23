@@ -2,14 +2,28 @@ SlideNote
 =========
 ##Set Up
 
-###Installing Cairo
-This project is dependent on `node-canvas`.
+###Installing Imagemagick
+This project is dependent on `node-imagemagick`.
 
-You need to install the `Cairo` due to its convenience.
+You need to install the `imagemagick`, `Xquarts`, `Ghostscript`  due to its convenience.
 
-Please have the installation refer to the following page.
+Please have the installation refer to the following.
 
-[node-canvas wiki](https://github.com/LearnBoost/node-canvas/wiki)
+#### Xquarts
+
+getting Xquarts and install.
+
+[XQuarts Download](https://xquartz.macosforge.org/landing/)
+
+#### imagemagick
+```
+brew install imagemagick
+```
+
+#### Ghostscript
+```
+brew install ghostscript
+```
 
 ###Resolve npm dependency
 
@@ -21,10 +35,4 @@ npm install
 
 ```
 bower install
-```
-
-###Resolve submodule dependency
-```
-git submodule init
-git submodule update
 ```

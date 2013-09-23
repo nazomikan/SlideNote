@@ -3,12 +3,33 @@ extends ../layout
 block content
   .container
     .row
-      each val in [1, 2, 3, 4, 5, 6, 7, 8, 9]
-        .col-lg-4
-          h2 Heading
-          p
-            | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
-            | commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-            | Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-          p
-            a.btn.btn-default(href='#') View details »
+      if !docs.length
+        .jumbotron
+          .container
+            h2 I'm sorry. "#{keyword}" could not be found :-(
+        a(href="/") » back
+      else
+        each slide in docs
+          .col-lg-4
+            h2 #{slide.title}
+            p #{slide.description} (#{slide.length} page)
+            p
+              a.btn.btn-default(href='/slide/#{slide.id}') View details »
+
+        each val in [1, 2, 3]
+          .col-lg-4
+            h2 Heading
+            p
+              | Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus
+              | commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+              | Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+            p
+              a.btn.btn-default(href='#') View details »
+
+        ul.pagination
+          li.disabled
+            a(href="#")&laquo;
+          li.active
+            a(href="#")
+              | 1
+              span.sr-only(current)
