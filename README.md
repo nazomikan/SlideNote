@@ -22,3 +22,13 @@ npm install
 ```
 bower install
 ```
+
+###Resolve submodule
+```
+git submodule init
+git submodule update
+
+cd vendor/meteor-pdf/
+git submodule init
+git submodule update
+```
