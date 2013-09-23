@@ -3,34 +3,31 @@ extends ../layout
 block content
   .container
     .col-lg-12
-      h2 title
-      div
+      h2 #{row.title}
+      #slide-player
         .thumbnail
-          img(src="http://24.media.tumblr.com/tumblr_mde330dvF01r2g5mso1_400.jpg")
+          each slide, idx in row.slides
+            if idx === 0
+              img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}")
+            else
+              img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}", style="display: none;")
           .caption
             ul.pager
               li
-                a(href="#") Previous
+                a#prev(href="#") Previous
               li
-                a(href="#") Next
-
-      p
-        span title
-        .well.well-sm
-          | cuckoo is great library
+                a#next(href="#") Next
       p
         span author
         .well.well-sm
-          | @nazomikan
+          | #{row.author}
 
       p
         span keyword
         .well.well-sm
-          | node, spec, stub, mock
+          | #{row.keyword}
 
       p
         span description
         .well.well-lg
-          | this is a great library
-
-
+          | #{row.description}

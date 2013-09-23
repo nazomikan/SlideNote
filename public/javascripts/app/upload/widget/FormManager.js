@@ -63,6 +63,7 @@
     var that = this
       , progress = this.root.find('#upload-progress')
       , submitArea = this.root.find('#submit-area')
+      , author = this.root.find('#file-author').val()
       , file = this.root.find('.file-choice-item').get(0).files[0]
       , desc = this.root.find('textarea').val()
       , data = new FormData()
@@ -74,6 +75,7 @@
     data.append('pdf', file);
     data.append('title', title);
     data.append('desc', desc);
+    data.append('author', author);
     $.ajax({
       url: '/_ajax/uploaded/',
       type: 'post',

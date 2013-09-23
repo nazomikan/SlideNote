@@ -3,7 +3,8 @@ $(function () {
     _pattern: {
       '_default': 'base',
       '^/$': 'index',
-      '^/upload/$': 'upload'
+      '^/upload/$': 'upload',
+      '^/slide/[0-9]+/$': 'slide'
     },
     base: {},
     index: {
@@ -14,6 +15,12 @@ $(function () {
       core: [],
       widget: [
         'app.upload.widget.FormManager'
+      ]
+    },
+    slide: {
+      core: [],
+      widget: [
+        'app.slide.widget.SlidePlayer'
       ]
     }
   });
