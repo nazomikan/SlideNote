@@ -1,21 +1,48 @@
 var path = require('path')
+  , fs = require('fs')
+  , async = require('async')
   , im = require('imagemagick')
-  , outputPath = path.resolve(__dirname, '../public/images')
+  , sanitize = require("sanitize-filename")
+  , srcPath = '/images/slides/'
+  , outputBasePath = path.resolve(__dirname, '../public' + srcPath)
   ;
 
-exports.convert = function (filePath, next) {
+exports.convert = function (filePath, callback) {
   var imagePath
-    , fileName
+    , outputPath
+    , dirname = Date.now().toString()
     ;
 
   if (path.extname(filePath) !== '.pdf') {
-    return next(new TypeError(filePath + ' must be pdf.'));
+    return callback(new TypeError(filePath + ' must be pdf.'));
   }
 
-  fileName = path.basename(filePath, '.pdf');
-  imagePath = path.join(outputPath, fileName) + '.jpg';
+  outputPath = path.join(outputBasePath, dirname);
+  imagePath = path.join(outputPath, 'slide') + '.jpg';
 
-  im.convert([filePath, imagePath], function (err, stdout) {
-    return next(err, imagePath);
+  async.waterfall([
+    function (next) {
+      fs.mkdir(outputPath, function (err, data) {
+        next(err, data);
+      });
+    },
+    function (data, next) {
+      im.convert([filePath, imagePath], function (err, stdout) {
+        next(err, stdout);
+      });
+    },
+    function (stdout, next) {
+      //fs.unlink(filePath);
+      var src = path.join(srcPath, dirname);
+      fs.readdir(outputPath, function (err, files) {
+        files = (files || []).map(function (v) {
+          return path.resolve(src, v);
+        });
+
+        next(err, imagePath);
+      });
+    }
+  ], function (err, res) {
+    return callback(err, imagePath);
   });
 };
