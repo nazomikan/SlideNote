@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "slide-note",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -10,9 +10,7 @@
     "jade": "*",
     "bower": "~1.2.6",
     "imagemagick": "*",
-    "canvas": "~1.1.0",
     "async": "~0.2.9",
-    "sanitize-filename": "~1.0.1",
     "mongoose": "~3.6.19",
     "underscore": "~1.5.2"
   }

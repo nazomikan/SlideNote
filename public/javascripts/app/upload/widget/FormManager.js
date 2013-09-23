@@ -97,8 +97,7 @@
 
       bar.css('width', '100%');
       clearTimeout(that.timer.convert);
-      //location.href = data.link
-      console.log(data);
+      location.href = data.link
     });
   };
 
