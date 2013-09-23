@@ -4,7 +4,7 @@ var path = require('path')
   , im = require('imagemagick')
   , sanitize = require("sanitize-filename")
   , srcPath = '/images/slides/'
-  , outputBasePath = path.resolve(__dirname, '../public' + srcPath)
+  , outputBasePath = path.resolve(__dirname, '../../public' + srcPath)
   ;
 
 exports.toJpgs = function (filePath, callback) {
@@ -14,6 +14,7 @@ exports.toJpgs = function (filePath, callback) {
     ;
 
   if (path.extname(filePath) !== '.pdf') {
+    console.log('file is not valid')
     return callback(new TypeError(filePath + ' must be pdf.'));
   }
 
@@ -32,17 +33,23 @@ exports.toJpgs = function (filePath, callback) {
       });
     },
     function (stdout, next) {
-      //fs.unlink(filePath);
+      fs.unlink(filePath);
       var src = path.join(srcPath, dirname);
+      console.log(outputPath);
       fs.readdir(outputPath, function (err, files) {
+        var dataset = {}
+          ;
+
         files = (files || []).map(function (v) {
           return path.resolve(src, v);
         });
 
-        next(err, imagePath);
+        dataset.slides = files;
+        dataset.id = dirname;
+        next(err, dataset);
       });
     }
   ], function (err, res) {
-    return callback(err, imagePath);
+    return callback(err, res);
   });
 };

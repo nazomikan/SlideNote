@@ -5,6 +5,9 @@
     this.template = {
       alert: $('#alert-message-template').html()
     }
+    this.timer = {
+      convert: null
+    }
   }
 
   FormManager.prototype.build = function () {
@@ -36,6 +39,8 @@
       ;
 
     msgboad.hide();
+    evt.preventDefault();
+    evt.stopPropagation();
 
     if (!filename) {
       msg.push('ファイルが選択されてません');
@@ -46,12 +51,107 @@
     }
 
     if (msg.length) {
-      evt.preventDefault();
-      evt.stopPropagation();
       snipet = _.template(template, {msgs: msg});
       msgboad.find('.message').empty().html(snipet);
       msgboad.fadeIn();
+    } else {
+      this.upload(title);
     }
+  };
+
+  FormManager.prototype.upload = function (title) {
+    var that = this
+      , progress = this.root.find('#upload-progress')
+      , submitArea = this.root.find('#submit-area')
+      , file = this.root.find('.file-choice-item').get(0).files[0]
+      , desc = this.root.find('textarea').val()
+      , data = new FormData()
+      ;
+
+    progress.removeClass('hide');
+    submitArea.addClass('hide');
+
+    data.append('pdf', file);
+    data.append('title', title);
+    data.append('desc', desc);
+    $.ajax({
+      url: '/_ajax/uploaded/',
+      type: 'post',
+      data: data,
+      cache: false,
+      processData: false,
+      contentType: false,
+      xhr: function () {
+        var xhr = jQuery.ajaxSettings.xhr();
+        if (xhr.upload) {
+          xhr.upload.addEventListener('progress', $.proxy(that, 'onProgress'), false);
+        }
+        return xhr;
+      }
+    }).then(function (data) {
+      var barWrapper = that.root.find('#convert-progress')
+        , bar = barWrapper.find('.bar')
+        ;
+
+      bar.css('width', '100%');
+      clearTimeout(that.timer.convert);
+      //location.href = data.link
+      console.log(data);
+    });
+  };
+
+  FormManager.prototype.onProgress = function (evt) {
+    var that = this
+      , percentage
+      , bar = this.root.find('#upload-progress .bar')
+      ;
+
+    if (!evt.lengthComputable) {
+      return;
+    }
+
+    percentage = (evt.loaded / evt.total)  * 100;
+    bar.css('width', percentage + '%');
+    if (percentage === 100) {
+      setTimeout(function () {
+        that.updateFakeProgress();
+      }, 600);
+    }
+  };
+
+  FormManager.prototype.updateFakeProgress = function () {
+    // convertもきちんと変換してると思ったか、馬鹿め。
+    var that = this
+      , barWrapper = this.root.find('#convert-progress')
+      , bar = barWrapper.find('.bar')
+      , basePer = 0
+      ;
+
+    barWrapper.removeClass('hide');
+    function lazyLooper(per) {
+      basePer += per = (per / 2);
+      bar.css('width', basePer + '%');
+
+      if (basePer > 90) {
+        return;
+      } else {
+        that.timer.convert = setTimeout(function () {
+          lazyLooper(per);
+        }, randomTimer());
+      }
+    }
+
+    function randomTimer() {
+      var nMax = 2000
+        , nMin = 500
+        ;
+
+      return Math.floor(Math.random() * (nMax - nMin + 1)) + nMin;
+    }
+
+    that.timer.convert = setTimeout(function () {
+      lazyLooper(100);
+    }, 100);
   };
 
   Namespace.create('app.upload.widget.FormManager').means(FormManager);

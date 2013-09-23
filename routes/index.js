@@ -9,13 +9,18 @@ exports.index = function (req, res) {
 };
 
 exports.upload = function (req, res) {
-  //var pdf = require('../libraries/pdf')
-  //  ;
-  //var file = path.resolve('resources/pdf/cuckoo.pdf');
-  //pdf.toJpgs(file, function (err, data) {
-  //  console.log(err);
-  //});
   res.render('upload/upload', {title: 'SlideNote'});
+};
+
+exports.uploaded = function (req, res) {
+  var file = req.files.pdf.path
+    , pdf = require('../libraries/pdf')
+    ;
+
+  pdf.toJpgs(file, function (err, dataset) {
+    dataset.link = /slide/ + dataset.id + '/';
+    res.json(dataset);
+  });
 };
 
 exports.search = function (req, res) {
@@ -24,7 +29,7 @@ exports.search = function (req, res) {
     , keyword = req.param('keyword') || ''
     ;
 
-  slideFinder.findByBroadMatch(keyword, function (err, docs) {
+  slideFinder.find(keyword, function (err, docs) {
     res.render('search/list', {
       title: 'SlideNote',
       docs: docs,

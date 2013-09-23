@@ -54,12 +54,13 @@ mongodb://localhost/slide_note
 
 slide shema will be as follows.
 ```
-{
-  id: Number,
-  length: Number,
-  title: String,
-  description: String,
-  keyword: Array,
-  updated: {type: Date, default: Date.now}
-}
+Schema = new mongoose.Schema({
+  id:          {type: Number, required: true},
+  length:      {type: Number, required: true},
+  title:       {type: String, required:true, trim: true},
+  author:      {type: String, required:true, trim: true},
+  description: {type: String, required: true, trim: true},
+  keyword:     [{type: String}],
+  updated:     {type: Date, required:true, default: Date.now}
+});
 ```

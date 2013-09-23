@@ -11,18 +11,22 @@ block content
     .container
       h1 Upload a Slide
 
-      form.form-horizontal(role='form')
+      form.form-horizontal(role='form', action="/uploaded/", enctype="multipart/form-data")
         .form-group
           label.col-lg-2.control-label.file-choice-label(for='file-choice')
             | select file (*.pdf)
           .col-lg-6
             .file
-              span ファイルを選択
+              span ファイルを選択*
               input.file-choice-item(type='file')
         .form-group
-          label.col-lg-2.control-label(for="file-name") title
+          label.col-lg-2.control-label(for="file-name") title*
           .col-lg-6
             input#file-name(type="text", placeholder="スライドの名前")
+        .form-group
+          label.col-lg-2.control-label(for="file-author") author
+          .col-lg-6
+            input#file-author(type="text", placeholder="作成者の名前")
         .form-group
           label.col-lg-2.control-label(for="file-description") description
           .col-lg-6
@@ -30,7 +34,15 @@ block content
         div.alert.alert-block.alert-danger(style="display: none;")
           h4 Oh snap! There'll be input leakage.
           .message
-        .form-group
+        .form-group#submit-area
           .col-lg-offset-2.col-lg-10
             button.btn.btn-default(type='submit') Upload
+        #upload-progress.hide
+          p uploading..
+          .progress.progress-striped.active
+            .bar.progress-bar.progress-bar-info(role="progressbar", style='width: 0%')
+        #convert-progress.hide
+          p converting..
+          .progress.progress-striped.active
+            .bar.progress-bar.progress-bar-success(role="progressbar", style='width: 0%')
 
