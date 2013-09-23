@@ -36,3 +36,30 @@ npm install
 ```
 bower install
 ```
+
+### DB
+This application adopts the mongodb as a data store.
+
+So installation of mongodb is required.
+
+Please set up by reference to the following page.
+
+[mongodb install](http://docs.mongodb.org/manual/installation/)
+
+####Schema
+db
+```
+mongodb://localhost/slide_note
+```
+
+slide shema will be as follows.
+```
+{
+  id: Number,
+  length: Number,
+  title: String,
+  description: String,
+  keyword: Array,
+  updated: {type: Date, default: Date.now}
+}
+```
