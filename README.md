@@ -27,8 +27,4 @@ bower install
 ```
 git submodule init
 git submodule update
-
-cd vendor/meteor-pdf/
-git submodule init
-git submodule update
 ```
