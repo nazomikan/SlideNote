@@ -16,6 +16,8 @@
   ],
   "dependencies": {
     "jquery": "~2.0.3",
-    "bootstrap": "~3.0.0"
+    "bootstrap": "~3.0.0",
+    "namespacejs": "~0.0.8",
+    "underscore": "~1.5.2"
   }
 }

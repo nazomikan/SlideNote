@@ -1,15 +1,36 @@
 extends ../layout
 
+block jstemplate
+  script#alert-message-template(type="text/template")
+    | <% _.each(msgs, function (txt) { %>
+    |   <p><%= txt %></p>
+    | <% }); %>
+
 block content
   .jumbotron#upload
     .container
       h1 Upload a Slide
 
-      form(role='form')
+      form.form-horizontal(role='form')
         .form-group
-          label(for='file-choice')
-            | アップロードするファイルを選択
-            | (*.ppt, *.key, *.pdf)
-          input#file-choice(type='file')
-        button.btn.btn-default(type='submit') Upload
+          label.col-lg-2.control-label.file-choice-label(for='file-choice')
+            | select file (*.pdf)
+          .col-lg-6
+            .file
+              span ファイルを選択
+              input.file-choice-item(type='file')
+        .form-group
+          label.col-lg-2.control-label(for="file-name") title
+          .col-lg-6
+            input#file-name(type="text", placeholder="スライドの名前")
+        .form-group
+          label.col-lg-2.control-label(for="file-description") description
+          .col-lg-6
+            textarea.form-control(rows="5")
+        div.alert.alert-block.alert-danger(style="display: none;")
+          h4 Oh snap! There'll be input leakage.
+          .message
+        .form-group
+          .col-lg-offset-2.col-lg-10
+            button.btn.btn-default(type='submit') Upload
 

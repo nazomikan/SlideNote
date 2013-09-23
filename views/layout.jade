@@ -5,8 +5,15 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel='stylesheet', href='/stylesheets/jumbotron.css')
     link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.css')
-    script(type='text/javascriptst', src='/components/jquery/jquery.js')
-    script(type='text/javascriptst', src='/components/bootstrap/dist/js/bootstrap.js')
+    script(type='text/javascript', src='/components/jquery/jquery.js')
+    script(type='text/javascript', src='/components/bootstrap/dist/js/bootstrap.js')
+    script(type='text/javascript', src='/components/namespacejs/namespace.js')
+    script(type='text/javascript', src='/components/underscore/underscore.js')
+    script(type='text/javascript', src='/javascripts/app/router.js')
+    script(type='text/javascript', src='/javascripts/app/routing.js')
+    script(type='text/javascript', src='/javascripts/app/upload/widget/FormManager.js')
+
+    block jstemplate
   body
     .navbar.navbar-inverse.navbar-fixed-top
       .container
