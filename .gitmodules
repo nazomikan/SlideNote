@@ -1,0 +1,3 @@
+[submodule "vendor/meteor-pdf"]
+	path = vendor/meteor-pdf
+	url = https://github.com/peerlibrary/meteor-pdf.js.git

@@ -9,6 +9,7 @@
     "express": "3.2.6",
     "jade": "*",
     "bower": "~1.2.6",
-    "imagemagick": "*"
+    "imagemagick": "*",
+    "canvas": "~1.1.0"
   }
 }

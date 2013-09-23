@@ -1,18 +1,34 @@
 SlideNote
 =========
+##Set Up
 
-##first Resolve dependency
+###Installing Cairo
+This project is dependent on `node-canvas`.
+
+You need to install the `Cairo` due to its convenience.
+
+Please have the installation refer to the following page.
+
+[node-canvas wiki](https://github.com/LearnBoost/node-canvas/wiki)
+
+###Resolve npm dependency
 
 ```
 npm install
 ```
 
-```
-npm install -g dependency
-```
+###Resolve bower dependency
 
 ```
 bower install
 ```
 
+###Resolve submodule
+```
+git submodule init
+git submodule update
 
+cd vendor/meteor-pdf/
+git submodule init
+git submodule update
+```
