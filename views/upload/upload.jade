@@ -21,12 +21,12 @@ block content
               input.file-choice-item(type="file", accept="application/pdf")
         .form-group
           label.col-lg-2.control-label(for="file-name") title*
-          .col-lg-6
-            input#file-name(type="text", placeholder="スライドの名前")
+          .col-lg-4
+            input#file-name.form-control(type="text", placeholder="スライドの名前")
         .form-group
           label.col-lg-2.control-label(for="file-author") author
-          .col-lg-6
-            input#file-author(type="text", placeholder="作成者の名前")
+          .col-lg-3
+            input#file-author.form-control(type="text", placeholder="作成者の名前")
         .form-group
           label.col-lg-2.control-label(for="file-description") description
           .col-lg-6
@@ -34,7 +34,7 @@ block content
         .form-group
           label.col-lg-2.control-label(for="file-tags") tags
           .col-lg-6
-            input#file-tags.col-lg-6(type="text", placeholder="キーワード(,)で複数設定可")
+            input#file-tags.col-lg-6.form-control(type="text", placeholder="キーワード(,)で複数設定可")
         div.alert.alert-block.alert-danger(style="display: none;")
           h4 Oh snap! There'll be input leakage.
           .message

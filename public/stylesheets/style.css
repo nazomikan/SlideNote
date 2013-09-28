@@ -6,8 +6,9 @@
   padding-left: 0 !important;
 }
 
-#upload {
+#upload label{
   font-size: 16px;
+  line-height: 16px;
 }
 
 #upload .file {
@@ -17,6 +18,8 @@
   padding: .5em;
   border: 1px solid #999;
   background-color: #eee;
+  font-size: 14px;
+  line-height: 35px;
 }
 
 #upload .file input[type="file"] {
