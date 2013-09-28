@@ -13,6 +13,8 @@
     this.root.on('click', '#next', $.proxy(this, 'onNext'));
     this.root.on('click', '#first', $.proxy(this, 'onFirst'));
     this.root.on('click', '#last', $.proxy(this, 'onLast'));
+    this.root.on('click', '#zoom', $.proxy(this, 'zoom'));
+    $(window).on('keydown', $.proxy(this, 'operateSlide'));
   };
 
   SlidePlayer.prototype.onPrev = function (evt) {
@@ -65,6 +67,33 @@
     if (last.length) {
       current.hide();
       last.show();
+    }
+  };
+
+  SlidePlayer.prototype.zoom = function(evt) {
+    var view = $('#thumbnail')[0]
+    ;
+    if (view.requestFullScreen) {
+      view.requestFullScreen();
+    } else if (view.mozRequestFullScreen) {
+      view.mozRequestFullScreen();
+    } else if (view.webkitRequestFullScreen) {
+      view.webkitRequestFullScreen();
+    }
+  };
+
+  SlidePlayer.prototype.operateSlide = function(evt) {
+    var code = evt.keyCode
+      , isFullScreen = document.mozFullScreen || document.webkitIsFullScreen
+      ;
+
+    if(isFullScreen){
+      if (code === 37 || code === 38) {
+        this.root.find('#prev').trigger('click');
+      }
+      if (code === 39 || code === 40) {
+        this.root.find('#next').trigger('click');
+      }
     }
   };
 
