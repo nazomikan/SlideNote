@@ -35,7 +35,6 @@ exports.toJpgs = function (filePath, callback) {
     function (stdout, next) {
       fs.unlink(filePath);
       var src = path.join(srcPath, dirname);
-      console.log(outputPath);
       fs.readdir(outputPath, function (err, files) {
         var dataset = {}
           ;

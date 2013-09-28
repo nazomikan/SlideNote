@@ -1,4 +1,6 @@
-
+#page-top .container{
+  width: 75%;
+}
 
 .padding-left-none {
   padding-left: 0 !important;

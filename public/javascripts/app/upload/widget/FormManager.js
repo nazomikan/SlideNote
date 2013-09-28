@@ -66,16 +66,27 @@
       , author = this.root.find('#file-author').val()
       , file = this.root.find('.file-choice-item').get(0).files[0]
       , desc = this.root.find('textarea').val()
+      , tagText = this.root.find('#file-tags').val()
       , data = new FormData()
+      , tags
       ;
+
+    tags = _.chain((tagText || '')
+      .split(',')).map(function (v) {
+        return v.trim();
+      })
+      .compact()
+      .value()
+      .join();
 
     progress.removeClass('hide');
     submitArea.addClass('hide');
-
     data.append('pdf', file);
     data.append('title', title);
     data.append('desc', desc);
     data.append('author', author);
+    data.append('tag', tags);
+
     $.ajax({
       url: '/_ajax/uploaded/',
       type: 'post',

@@ -13,7 +13,7 @@ Schema = new mongoose.Schema({
   title:       {type: String, required:true, trim: true},
   author:      {type: String, trim: true},
   description: {type: String, trim: true},
-  keyword:     [{type: String}],
+  tag:         [{type: String}],
   slides:      [{type: String}],
   updated:     {type: Date, default: Date.now}
 });
@@ -30,14 +30,13 @@ exports.findOne = function (id, callback) {
 
 exports.find = function (keyword, callback) {
   var exp1 = new RegExp(keyword, 'i')
-    , exp2 = new RegExp('^' + keyword + '$', 'i')
     ;
 
   Model.find({
     $or: [
       {title: exp1},
       {description: exp1},
-      {keyword: exp2}
+      {tag: {$in: [keyword]}}
     ]
   }, function (err, docs) {
     callback(err, docs);
@@ -54,7 +53,7 @@ exports.save = function (data, callback) {
     title: data.title,
     author: data.author,
     description: data.desc,
-    keyword: ['node', 'spec', 'cuckoo', 'mock'],
+    tag: data.tag || [],
     slides: data.slides
   });
 

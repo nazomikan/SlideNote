@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  .jumbotron
+  #page-top.jumbotron
     .container
       h1 Welcome to #{title}
       p
@@ -11,7 +11,7 @@ block content
 
       form(role='form', action='/search/', method='GET')
         .form-group
-          p.col-lg-8.padding-left-none
+          p.col-lg-9.padding-left-none
             input.form-control.input-lg(type='text', name="keyword", placeholder='Search Word')
 
           p.col-lg-3

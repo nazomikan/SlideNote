@@ -19,6 +19,7 @@ exports.uploaded = function (req, res) {
     , title = req.param('title')
     , desc = req.param('desc')
     , author = req.param('author')
+    , tag = req.param('tag').split(',')
     , pdf = require('../libraries/pdf')
     , store = require('../libraries/mongo/slide')
     ;
@@ -35,6 +36,8 @@ exports.uploaded = function (req, res) {
     dataset.title = title;
     dataset.desc = desc;
     dataset.author = author;
+    dataset.tag = tag || [];
+
     store.save(dataset, function (err) {
       next(err, dataset);
     });
@@ -80,7 +83,7 @@ exports.slide = function (req, res) {
       return 0;
     });
 
-    row.keyword = row.keyword.join(', ');
+    row.tag = row.tag.join(', ');
     res.render('slide/slide', {title: 'SlideNote', row: row});
   });
 };

@@ -18,7 +18,7 @@ block content
           .col-lg-6
             .file
               span ファイルを選択*
-              input.file-choice-item(type='file')
+              input.file-choice-item(type="file", accept="application/pdf")
         .form-group
           label.col-lg-2.control-label(for="file-name") title*
           .col-lg-6
@@ -31,12 +31,16 @@ block content
           label.col-lg-2.control-label(for="file-description") description
           .col-lg-6
             textarea.form-control(rows="5")
+        .form-group
+          label.col-lg-2.control-label(for="file-tags") tags
+          .col-lg-6
+            input#file-tags.col-lg-6(type="text", placeholder="キーワード(,)で複数設定可")
         div.alert.alert-block.alert-danger(style="display: none;")
           h4 Oh snap! There'll be input leakage.
           .message
         .form-group#submit-area
           .col-lg-offset-2.col-lg-10
-            button.btn.btn-default(type='submit') Upload
+            button.btn.btn-primary(type='submit') Upload
         #upload-progress.hide
           p uploading..
           .progress.progress-striped.active
