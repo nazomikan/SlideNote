@@ -36,3 +36,13 @@
 #slide-player .glyphicon {
   font-size: 25px;
 }
+
+#slide-player .zoom {
+  float: right;
+  color: #6699cc;
+  border: 1px solid #dddddd;
+  padding: 5px 7px 5px;
+  font-size: 20px;
+  line-height: 20px;
+  border-radius: 4px;
+}
