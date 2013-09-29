@@ -39,8 +39,6 @@
       ;
 
     msgboad.hide();
-    evt.preventDefault();
-    evt.stopPropagation();
 
     if (!filename) {
       msg.push('ファイルが選択されてません');
@@ -51,11 +49,13 @@
     }
 
     if (msg.length) {
+      evt.preventDefault();
+      evt.stopPropagation();
       snipet = _.template(template, {msgs: msg});
       msgboad.find('.message').empty().html(snipet);
       msgboad.fadeIn();
     } else {
-      this.upload(title);
+      return true;
     }
   };
 

@@ -11,30 +11,30 @@ block content
     .container
       h2 Upload Slide
 
-      form.form-horizontal(role='form', action="/uploaded/", enctype="multipart/form-data")
+      form.form-horizontal(role='form', method="POST" action="/uploaded/", enctype="multipart/form-data")
         .form-group
           label.col-lg-2.control-label.file-choice-label(for='file-choice')
             | select file (*.pdf)
           .col-lg-6
             .file
               span ファイルを選択*
-              input.file-choice-item(type="file", accept="application/pdf")
+              input.file-choice-item(type="file", accept="application/pdf", name="filepath")
         .form-group
           label.col-lg-2.control-label(for="file-name") title*
           .col-lg-4
-            input#file-name.form-control(type="text", placeholder="スライドの名前")
+            input#file-name.form-control(type="text", placeholder="スライドの名前", name="title")
         .form-group
           label.col-lg-2.control-label(for="file-author") author
           .col-lg-3
-            input#file-author.form-control(type="text", placeholder="作成者の名前")
+            input#file-author.form-control(type="text", placeholder="作成者の名前", name="author")
         .form-group
           label.col-lg-2.control-label(for="file-description") description
           .col-lg-6
-            textarea.form-control(rows="5")
+            textarea.form-control(rows="5", name="desc")
         .form-group
           label.col-lg-2.control-label(for="file-tags") tags
           .col-lg-6
-            input#file-tags.col-lg-6.form-control(type="text", placeholder="キーワード(,)で複数設定可")
+            input#file-tags.col-lg-6.form-control(type="text", placeholder="キーワード(,)で複数設定可", name="tag")
         div.alert.alert-block.alert-danger(style="display: none;")
           h4 Oh snap! There'll be input leakage.
           .message

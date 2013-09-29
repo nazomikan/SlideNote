@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  .jumbotron#uploaded
+    .container
+      h2 update your slide completely!
+
+      form.form-horizontal(role='form', action="/uploaded/")
+      p
+        | your slide is 
+        a(href="#{slide}") here.
