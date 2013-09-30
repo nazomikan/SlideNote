@@ -5,7 +5,19 @@
   }
 
   SlidePlayer.prototype.build = function () {
+    this.initView();
     this.bindAllListeners();
+  };
+
+  SlidePlayer.prototype.initView = function () {
+    var view = this.root.find('#thumbnail').get(0)
+      , zoom = this.root.find('#zoom').get(0)
+      ;
+
+    if (view.requestFullScreen && view.mozRequestFullScreen && view.webkitRequestFullScreen) {
+      $(zoom).css('color', '#cccccc');
+      $(zoom).css('cursor', 'not-allowed');
+    }
   };
 
   SlidePlayer.prototype.bindAllListeners = function () {
@@ -14,7 +26,7 @@
     this.root.on('click', '#first', $.proxy(this, 'onFirst'));
     this.root.on('click', '#last', $.proxy(this, 'onLast'));
     this.root.on('click', '#zoom', $.proxy(this, 'zoom'));
-    $(window).on('keydown', $.proxy(this, 'operateSlide'));
+    $(win).on('keydown', $.proxy(this, 'operateSlide'));
   };
 
   SlidePlayer.prototype.onPrev = function (evt) {
@@ -70,9 +82,13 @@
     }
   };
 
-  SlidePlayer.prototype.zoom = function(evt) {
-    var view = $('#thumbnail')[0]
-    ;
+  SlidePlayer.prototype.zoom = function (evt) {
+    var view = this.root.find('#thumbnail').get(0)
+      ;
+
+    evt.preventDefault();
+    evt.stopPropagation();
+
     if (view.requestFullScreen) {
       view.requestFullScreen();
     } else if (view.mozRequestFullScreen) {
@@ -82,12 +98,12 @@
     }
   };
 
-  SlidePlayer.prototype.operateSlide = function(evt) {
+  SlidePlayer.prototype.operateSlide = function (evt) {
     var code = evt.keyCode
-      , isFullScreen = document.mozFullScreen || document.webkitIsFullScreen
+      , isFullScreen = doc.mozFullScreen || doc.webkitIsFullScreen
       ;
 
-    if(isFullScreen){
+    if (isFullScreen) {
       if (code === 37 || code === 38) {
         this.root.find('#prev').trigger('click');
       }
@@ -95,7 +111,10 @@
         this.root.find('#next').trigger('click');
       }
     }
+    return true;
   };
 
   Namespace.create('app.slide.widget.SlidePlayer').means(SlidePlayer);
+  Namespace.create('win').means(window);
+  Namespace.create('doc').means(document);
 }());
