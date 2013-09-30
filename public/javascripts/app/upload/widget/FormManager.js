@@ -54,6 +54,10 @@
       snipet = _.template(template, {msgs: msg});
       msgboad.find('.message').empty().html(snipet);
       msgboad.fadeIn();
+    } else if (win.FormData) {
+      evt.preventDefault();
+      evt.stopPropagation();
+      return this.upload(title);
     } else {
       return true;
     }
@@ -169,4 +173,5 @@
   };
 
   Namespace.create('app.upload.widget.FormManager').means(FormManager);
+  Namespace.create('win').means(window);
 }());

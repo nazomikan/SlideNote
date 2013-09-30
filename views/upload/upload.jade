@@ -11,14 +11,14 @@ block content
     .container
       h2 Upload Slide
 
-      form.form-horizontal(role='form', method="POST" action="/uploaded/", enctype="multipart/form-data")
+      form.form-horizontal(role='form', method="POST", action="/uploaded/", enctype="multipart/form-data")
         .form-group
           label.col-lg-2.control-label.file-choice-label(for='file-choice')
             | select file (*.pdf)
           .col-lg-6
             .file
               span ファイルを選択*
-              input.file-choice-item(type="file", accept="application/pdf", name="filepath")
+              input.file-choice-item(type="file", accept="application/pdf", name="tmpFile")
         .form-group
           label.col-lg-2.control-label(for="file-name") title*
           .col-lg-4
