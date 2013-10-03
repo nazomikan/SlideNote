@@ -1,4 +1,4 @@
-(function () {
+(function (win) {
 
   function FormManager() {
     this.root = $('#upload');
@@ -50,17 +50,18 @@
 
     if (msg.length) {
       evt.preventDefault();
-      evt.stopPropagation();
       snipet = _.template(template, {msgs: msg});
       msgboad.find('.message').empty().html(snipet);
       msgboad.fadeIn();
-    } else if (win.FormData) {
-      evt.preventDefault();
-      evt.stopPropagation();
-      return this.upload(title);
-    } else {
-      return true;
+      return;
     }
+    if (win.FormData) {
+      evt.preventDefault();
+      this.upload(title);
+      return;
+    }
+
+    return true;
   };
 
   FormManager.prototype.upload = function (title) {
@@ -173,5 +174,4 @@
   };
 
   Namespace.create('app.upload.widget.FormManager').means(FormManager);
-  Namespace.create('win').means(window);
-}());
+}(window));

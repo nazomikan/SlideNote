@@ -15,7 +15,7 @@ exports.upload = function (req, res) {
 };
 
 exports.legacyUploaded = function (req, res) {
-  var file = req.files.tmpFile.path
+  var file = req.files.pdf.path
     , title = req.param('title')
     , desc = req.param('desc')
     , author = req.param('author')
