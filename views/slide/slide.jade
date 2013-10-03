@@ -5,7 +5,7 @@ block content
     .col-md-10
       h2 #{row.title}
       #slide-player
-        .thumbnail
+        .thumbnail#thumbnail
           each slide, idx in row.slides
             if idx === 0
               img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}")
@@ -21,7 +21,7 @@ block content
                 a#next.glyphicon.glyphicon-forward(href="#")
               li
                 a#last.glyphicon.glyphicon-fast-forward(href="#")
-            a.zoom(href="#")
+            a.zoom#zoom(href="#")
               span.glyphicon.glyphicon-zoom-in
       p
         span author

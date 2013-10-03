@@ -46,3 +46,8 @@
   line-height: 20px;
   border-radius: 4px;
 }
+
+#slide-player .lock {
+  color: #cccccc;
+  cursor: not-allowed;
+}

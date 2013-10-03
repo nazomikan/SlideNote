@@ -14,6 +14,44 @@ exports.upload = function (req, res) {
   res.render('upload/upload', {title: 'SlideNote'});
 };
 
+exports.legacyUploaded = function (req, res) {
+  var file = req.files.pdf.path
+    , title = req.param('title')
+    , desc = req.param('desc')
+    , author = req.param('author')
+    , tag = req.param('tag').split(',')
+    , pdf = require('../libraries/pdf')
+    , store = require('../libraries/mongo/slide')
+    ;
+
+  async.waterfall([
+    function (next) {
+      pdf.toJpgs(file, function (err, dataset) {
+        next(err, dataset);
+      });
+    },
+    function (dataset, next) {
+      dataset.link = /slide/ + dataset.id + '/';
+      dataset.slides = dataset.slides || [];
+      dataset.title = title;
+      dataset.desc = desc;
+      dataset.author = author;
+      dataset.tag = tag || [];
+
+      store.save(dataset, function (err) {
+        next(err, dataset);
+      });
+    }
+  ], function (err, dataset) {
+    if (err) {
+      console.log(err.stack);
+      res.render('uploaded/uploaded', {title: 'SlideNote', err: err.stack});
+      return;
+    }
+    res.render('uploaded/uploaded', {title: 'SlideNote', slide: dataset.link });
+  });
+};
+
 exports.uploaded = function (req, res) {
   var file = req.files.pdf.path
     , title = req.param('title')

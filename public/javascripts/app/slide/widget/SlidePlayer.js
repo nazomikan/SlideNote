@@ -1,11 +1,22 @@
-(function () {
+(function (win, doc) {
 
   function SlidePlayer() {
     this.root = $('#slide-player');
   }
 
   SlidePlayer.prototype.build = function () {
+    this.initView();
     this.bindAllListeners();
+  };
+
+  SlidePlayer.prototype.initView = function () {
+    var view = this.root.find('#thumbnail').get(0)
+      , zoom = this.root.find('#zoom').get(0)
+      ;
+
+    if (view.requestFullScreen && view.mozRequestFullScreen && view.webkitRequestFullScreen) {
+      $(zoom).addClass('lock');
+    }
   };
 
   SlidePlayer.prototype.bindAllListeners = function () {
@@ -13,6 +24,8 @@
     this.root.on('click', '#next', $.proxy(this, 'onNext'));
     this.root.on('click', '#first', $.proxy(this, 'onFirst'));
     this.root.on('click', '#last', $.proxy(this, 'onLast'));
+    this.root.on('click', '#zoom', $.proxy(this, 'zoom'));
+    $(win).on('keydown', $.proxy(this, 'operateSlide'));
   };
 
   SlidePlayer.prototype.onPrev = function (evt) {
@@ -68,5 +81,37 @@
     }
   };
 
+  SlidePlayer.prototype.zoom = function (evt) {
+    var view = this.root.find('#thumbnail').get(0)
+      ;
+
+    evt.preventDefault();
+    evt.stopPropagation();
+
+    if (view.requestFullScreen) {
+      view.requestFullScreen();
+    } else if (view.mozRequestFullScreen) {
+      view.mozRequestFullScreen();
+    } else if (view.webkitRequestFullScreen) {
+      view.webkitRequestFullScreen();
+    }
+  };
+
+  SlidePlayer.prototype.operateSlide = function (evt) {
+    var code = evt.keyCode
+      , isFullScreen = doc.mozFullScreen || doc.webkitIsFullScreen
+      ;
+
+    if (isFullScreen) {
+      if (code === 37 || code === 38) {
+        this.root.find('#prev').trigger('click');
+      }
+      if (code === 39 || code === 40) {
+        this.root.find('#next').trigger('click');
+      }
+    }
+    return true;
+  };
+
   Namespace.create('app.slide.widget.SlidePlayer').means(SlidePlayer);
-}());
+}(window, document));
