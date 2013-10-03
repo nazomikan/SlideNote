@@ -1,4 +1,4 @@
-(function () {
+(function (win, doc) {
 
   function SlidePlayer() {
     this.root = $('#slide-player');
@@ -15,8 +15,7 @@
       ;
 
     if (view.requestFullScreen && view.mozRequestFullScreen && view.webkitRequestFullScreen) {
-      $(zoom).css('color', '#cccccc');
-      $(zoom).css('cursor', 'not-allowed');
+      $(zoom).addClass('lock');
     }
   };
 
@@ -115,6 +114,4 @@
   };
 
   Namespace.create('app.slide.widget.SlidePlayer').means(SlidePlayer);
-  Namespace.create('win').means(window);
-  Namespace.create('doc').means(document);
-}());
+}(window, document));
