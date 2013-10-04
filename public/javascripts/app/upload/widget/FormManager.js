@@ -1,4 +1,4 @@
-(function () {
+(function (win) {
 
   function FormManager() {
     this.root = $('#upload');
@@ -39,8 +39,6 @@
       ;
 
     msgboad.hide();
-    evt.preventDefault();
-    evt.stopPropagation();
 
     if (!filename) {
       msg.push('ファイルが選択されてません');
@@ -51,12 +49,19 @@
     }
 
     if (msg.length) {
+      evt.preventDefault();
       snipet = _.template(template, {msgs: msg});
       msgboad.find('.message').empty().html(snipet);
       msgboad.fadeIn();
-    } else {
-      this.upload(title);
+      return;
     }
+    if (win.FormData) {
+      evt.preventDefault();
+      this.upload(title);
+      return;
+    }
+
+    return true;
   };
 
   FormManager.prototype.upload = function (title) {
@@ -169,4 +174,4 @@
   };
 
   Namespace.create('app.upload.widget.FormManager').means(FormManager);
-}());
+}(window));

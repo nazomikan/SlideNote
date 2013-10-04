@@ -33,6 +33,7 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/upload/', routes.upload);
+app.post('/uploaded/', routes.legacyUploaded);
 app.post('/_ajax/uploaded/', routes.uploaded);
 app.get('/search/', routes.search);
 app.get('/slide/:id', routes.slide);
