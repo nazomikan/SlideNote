@@ -91,7 +91,7 @@ exports.uploaded = function (req, res) {
 };
 
 exports.search = function (req, res) {
-  var store = require('../libraries/mongo/slide')
+  var store = require('../libraries/elasticsearch/slide')
     , keyword = req.param('keyword') || ''
     ;
 

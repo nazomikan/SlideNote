@@ -65,3 +65,43 @@ Schema = new mongoose.Schema({
   updated:     {type: Date, default: Date.now}
 });
 ```
+
+### ElasticSearch
+install
+```
+brew install elasticsearch
+```
+
+plugin install for connect mongodb
+```
+plugin -install elasticsearch/elasticsearch-mapper-attachments/1.8.0
+```
+
+```
+plugin -i com.github.richardwilly98.elasticsearch/elasticsearch-river-mongodb/1.7.0
+```
+
+setting for connecting mongodb and ElasticSearch
+```
+sudo mkdir -p /data/mongo
+```
+
+```
+sudo chmod 777 /data/mongo
+```
+
+```
+mkdir -p /data/mongo/rs0
+```
+
+```
+mkdir -p /data/mongo/log/
+```
+
+```
+mongod --replSet repslide --port 27017 --dbpath /data/mongo/rs0 --logpath /data/mongo/log/rs0.log &
+```
+
+```
+./batches/setupMongo2Es
+```
