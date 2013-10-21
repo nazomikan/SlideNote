@@ -9,7 +9,8 @@ block content
             h2 I'm sorry. "#{keyword}" could not be found :-(
         a(href="/") » back
       else
-        each slide in docs
+        each doc in docs
+          slide = doc._source
           .col-md-4
             h2 #{slide.title}
             p #{slide.description} (#{slide.length} page)
