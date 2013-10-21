@@ -105,12 +105,12 @@ exports.search = function (req, res) {
 };
 
 exports.slide = function (req, res) {
-  var store = require('../libraries/elasticsearch/slide')
+  var store = require('../libraries/mongo/slide')
     , id = req.param('id')
     ;
 
   store.findOne(id, function (err, dataset) {
-    var row = _.first(dataset)._source;
+    var row = _.first(dataset);
     row.slides = row.slides.sort(function (a, b) {
       var a_ = +(path.basename(a, '.jpg').replace('slide-', ''))
         , b_ = +(path.basename(b, '.jpg').replace('slide-', ''))
