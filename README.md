@@ -103,5 +103,12 @@ mongod --replSet repslide --port 27017 --dbpath /data/mongo/rs0 --logpath /data/
 ```
 
 ```
-./batches/setupMongo2Es
+mongo localhost:27017/slide_note
+ > config = {_id: 'repslide', members: [{_id: 0, host: 'localhost:27017'}]};
+ > rs.initiate( config );
+ > rs.status();
+```
+
+```
+./batches/connectMongoAndEs
 ```
