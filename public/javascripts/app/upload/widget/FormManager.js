@@ -16,6 +16,7 @@
 
   FormManager.prototype.bindAllListeners = function () {
     this.root.on('change', '.file-choice-item', $.proxy(this, 'updateFileLabel'));
+    this.root.on('click', '.file-choices', $.proxy(this.delegateFileChoice, this));
     this.root.on('submit', $.proxy(this, "onSubmit"));
   };
 
@@ -25,6 +26,10 @@
       ;
 
     label.text(target.val());
+  };
+
+  FormManager.prototype.delegateFileChoice = function (evt) {
+    $(evt.currentTarget).closest('.file').find('input').trigger('click');
   };
 
   FormManager.prototype.onSubmit = function (evt) {

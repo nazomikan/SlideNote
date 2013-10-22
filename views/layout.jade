@@ -1,10 +1,13 @@
 doctype 5
 html
   head
+    meta(http-equiv="Content-Type", content="text/html; charset=utf-8")
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='/stylesheets/jumbotron.css')
     link(rel='stylesheet', href='/components/bootstrap/dist/css/bootstrap.css')
+    link(rel='stylesheet', href='/stylesheets/prettify.css')
+    link(rel='stylesheet', href='/stylesheets/flat-ui.css')
+    link(rel='stylesheet', href='/stylesheets/docs.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
     script(type='text/javascript', src='/components/jquery/jquery.js')
     script(type='text/javascript', src='/components/bootstrap/dist/js/bootstrap.js')
     script(type='text/javascript', src='/components/namespacejs/namespace.js')
@@ -16,23 +19,12 @@ html
 
     block jstemplate
   body
-    .navbar.navbar-inverse.navbar-fixed-top
-      .container
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='/') Slide Note
-        .navbar-collapse.collapse
-          ul.nav.navbar-nav
-            li
-              a(href='/upload/') Upload
-
-    block content
-
-    .container
-      hr
-      footer
-        p @nazomikan 2013
-
+    .wrap
+      .navbarFix
+        ul
+          li
+            a.sitename(href='/') Slide Note
+          li
+            a(href='/upload/') Upload
+      .contblock
+        block content

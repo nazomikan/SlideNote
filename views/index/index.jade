@@ -1,19 +1,18 @@
 extends ../layout
 
 block content
-  #page-top.jumbotron
+  .jumbotron
     .container
-      h1 Welcome to #{title}
-      p
+      h1.col-md-9
+        img(src='/images/page/slidenote.png', alt='')
+      p.col-md-9
         | hello everyone!
         br
         | please use this awesome slide share service :)
-
-      form(role='form', action='/search/', method='GET')
-        .form-group
-          p.col-md-9.padding-left-none
-            input.form-control.input-lg(type='text', name="keyword", placeholder='Search Word')
-
-          p.col-md-3
-            button.btn.btn-primary.btn-lg Search »
-
+      .clear
+        form(role='form', action='/search/', method='GET')
+          .form-group.clearfix
+            p.col-md-8.padding-left-none
+              input.form-control.input-lg(type='text', name='keyword', placeholder='Search Word')
+            p.col-md-3
+              button.btn.btn-primary.btn-lg Search

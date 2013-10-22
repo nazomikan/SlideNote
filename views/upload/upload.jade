@@ -9,44 +9,44 @@ block jstemplate
 block content
   .jumbotron#upload
     .container
-      h2 Upload Slide
+      h2.upTitle Upload Slide
 
       form.form-horizontal(role='form', method="POST", action="/uploaded/", enctype="multipart/form-data")
-        .form-group
-          label.col-lg-2.control-label.file-choice-label(for='file-choice')
-            | select file (*.pdf)
-          .col-lg-6
-            .file
-              span ファイルを選択*
-              input.file-choice-item(type="file", accept="application/pdf", name="pdf")
-        .form-group
-          label.col-lg-2.control-label(for="file-name") title*
-          .col-lg-4
-            input#file-name.form-control(type="text", placeholder="スライドの名前", name="title")
-        .form-group
-          label.col-lg-2.control-label(for="file-author") author
-          .col-lg-3
-            input#file-author.form-control(type="text", placeholder="作成者の名前", name="author")
-        .form-group
-          label.col-lg-2.control-label(for="file-description") description
-          .col-lg-6
-            textarea.form-control(rows="5", name="desc")
-        .form-group
-          label.col-lg-2.control-label(for="file-tags") tags
-          .col-lg-6
-            input#file-tags.col-lg-6.form-control(type="text", placeholder="キーワード(,)で複数設定可", name="tag")
-        div.alert.alert-block.alert-danger(style="display: none;")
+        dl.form-group.clearfix
+          dt.col-md-2
+            label.file-choice-label(for='file-choice')
+              | select file
+              span.small (*.pdf)
+          dd.col-md-3.fileSelect.file
+            span.file-choices.btn.btn-block.btn-lg.btn-info ファイルを選択
+            input#file-choice.file-choice-item(type='file', accept='application/pdf', name="pdf")
+        .form-group.clearfix
+          label.col-md-2.control-label(for='file-name') title*
+          .col-md-4
+            input#file-name.form-control(type='text', placeholder='スライドの名前', name="title")
+        .form-group.clearfix
+          label.col-md-2.control-label(for='file-author') author
+          .col-md-4
+            input#file-author.form-control(type='text', placeholder='作成者の名前', name="author")
+        .form-group.clearfix
+          label.col-md-2.control-label(for="file-description") description
+          .col-md-6
+            textarea#file-description.form-control(rows='5', name="desc")
+        .form-group.clearfix
+          label.col-md-2.control-label(for='file-tags') tags
+          .col-md-6
+            input#file-tags.col-md-6.form-control(type='text', placeholder='キーワード(,)で複数設定可', name="tag")
+        .alert.alert-block.alert-danger(style='display: none;')
           h4 Oh snap! There'll be input leakage.
           .message
-        .form-group#submit-area
-          .col-lg-offset-2.col-lg-10
+        #submit-area.form-group.clearfix
+          .col-md-offset-2.col-md-10
             button.btn.btn-primary(type='submit') Upload
         #upload-progress.hide
           p uploading..
           .progress.progress-striped.active
-            .bar.progress-bar.progress-bar-info(role="progressbar", style='width: 0%')
+            .bar.progress-bar.progress-bar-info(role='progressbar', style='width: 0%')
         #convert-progress.hide
           p converting..
           .progress.progress-striped.active
-            .bar.progress-bar.progress-bar-success(role="progressbar", style='width: 0%')
-
+            .bar.progress-bar.progress-bar-success(role='progressbar', style='width: 0%')

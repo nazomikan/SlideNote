@@ -1,18 +1,21 @@
 extends ../layout
 
 block content
-  .container
-    .row
-      if !docs.length
-        .jumbotron
+  .jumbotron
+    .container
+      .row
+        if !docs.length
           .container
             h2 I'm sorry. "#{keyword}" could not be found :-(
-        a(href="/") » back
-      else
-        each doc in docs
-          slide = doc._source
-          .col-md-4
-            h2 #{slide.title}
-            p #{slide.description} (#{slide.length} page)
-            p
-              a.btn.btn-default(href='/slide/#{slide.id}/') View details »
+          a(href="/") » back
+        else
+          ul.row
+            each doc in docs
+              slide = doc._source
+              li.col-md-4
+                a.thumb(href="/slide/#{slide.id}/")
+                  figure
+                    span
+                      img(src="#{slide.slides[0]}", width="122px")
+                      figcaption
+                        small #{slide.title} (#{slide.length} page)

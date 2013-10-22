@@ -33,12 +33,14 @@
     var current = this.root.find('.slide:visible')
       , currentNum = current.data('page')
       , prevSelector = '.slide-' + (currentNum - 1)
-      , prev = this.root.find(prevSelector).show();
+      , prev = this.root.find(prevSelector).show()
+      , counter = this.root.find('#count')
       ;
 
     if (prev.length) {
       current.hide();
       prev.show();
+      counter.text(+prev.data('page') + 1);
     }
   };
 
@@ -47,24 +49,28 @@
     var current = this.root.find('.slide:visible')
       , currentNum = current.data('page')
       , nextSelector = '.slide-' + (currentNum + 1)
-      , next = this.root.find(nextSelector).show();
+      , next = this.root.find(nextSelector).show()
+      , counter = this.root.find('#count')
       ;
 
     if (next.length) {
       current.hide();
       next.show();
+      counter.text(+next.data('page') + 1);
     }
   };
 
   SlidePlayer.prototype.onFirst = function (evt) {
     evt.preventDefault();
     var current = this.root.find('.slide:visible')
-      , top = this.root.find('.slide-0').show();
+      , top = this.root.find('.slide-0').show()
+      , counter = this.root.find('#count')
       ;
 
     if (top.length) {
       current.hide();
       top.show();
+      counter.text(+top.data('page') + 1);
     }
   };
 
@@ -72,28 +78,29 @@
     evt.preventDefault();
     var current = this.root.find('.slide:visible')
       , len = this.root.find('.slide').length
-      , last = this.root.find('.slide-' + (len - 1)).show();
+      , last = this.root.find('.slide-' + (len - 1)).show()
+      , counter = this.root.find('#count')
       ;
 
     if (last.length) {
       current.hide();
       last.show();
+      counter.text(+last.data('page') + 1);
     }
   };
 
   SlidePlayer.prototype.zoom = function (evt) {
-    var view = this.root.find('#thumbnail').get(0)
+    var thumb = this.root.find('#thumbnail')
+      , view = thumb.get(0)
+      , fullScreen
       ;
 
     evt.preventDefault();
     evt.stopPropagation();
 
-    if (view.requestFullScreen) {
-      view.requestFullScreen();
-    } else if (view.mozRequestFullScreen) {
-      view.mozRequestFullScreen();
-    } else if (view.webkitRequestFullScreen) {
-      view.webkitRequestFullScreen();
+    fullScreen = view.requestFullScreen || view.mozRequestFullScreen || view.webkitRequestFullScreen;
+    if (fullScreen) {
+      fullScreen.call(view);
     }
   };
 

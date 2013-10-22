@@ -1,39 +1,44 @@
 extends ../layout
 
 block content
-  .container
-    .col-md-10
+  .jumbotron
+    .container
       h2 #{row.title}
-      #slide-player
-        .thumbnail#thumbnail
+      #slide-player.slidePlayer
+        .slideBox#thumbnail
           each slide, idx in row.slides
             if idx === 0
-              img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}")
+              img(class="slide slide-#{idx} normal", src="#{slide}", data-page="#{idx}")
             else
-              img(class="slide slide-#{idx}", src="#{slide}", data-page="#{idx}", style="display: none;")
-          .caption(style="text-align: center;")
-            ul.pagination
-              li
-                a#first.glyphicon.glyphicon-fast-backward(href="#")
-              li
-                a#prev.glyphicon.glyphicon-backward(href="#")
-              li
-                a#next.glyphicon.glyphicon-forward(href="#")
-              li
-                a#last.glyphicon.glyphicon-fast-forward(href="#")
-            a.zoom#zoom(href="#")
-              span.glyphicon.glyphicon-zoom-in
-      p
-        span author
-        .well.well-sm
-          | #{row.author}
+              img(class="slide slide-#{idx} normal", src="#{slide}", data-page="#{idx}", style="display: none;")
+        .pagination
+          ul
+            li.first
+              a#first.glyphicon.glyphicon-fast-backward(href="#")
+            li.previous
+              a#prev.fui-arrow-left.circle(href="#")
+            li.page
+              span.counter
+                span#count 1
+                | /#{row.length}
+            li.next
+              a#next.fui-arrow-right.circle(href="#")
+            li.last
+              a#last.glyphicon.glyphicon-fast-forward(href="#")
+            li#zoom.vjs-fullscreen-control.vjs-control.zoom
+              span.vjs-control-text
+      .slideInfo.clearfix
+        dl
+          dt author
+          dd.well.well-sm
+            | #{row.author}
 
-      p
-        span keyword
-        .well.well-sm
-          | #{row.tag}
+        dl
+          dt keyword
+          dd.well.well-sm
+            | #{row.tag}
 
-      p
-        span description
-        .well.well-lg
-          | #{row.description}
+        dl
+          dt description
+          dd.well.well-lg
+            | #{row.description}
