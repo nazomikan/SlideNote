@@ -146,6 +146,20 @@ a.thumb figcaption {
 :-webkit-full-screen .slide { height: auto; }
 
 /* bootstrap打ち消し */
+.slidePlayer .slideCaption {
+	color: #fff;
+	width: 100%;
+	text-indent: 30px;
+	border-radius: .5em .5em 0 0;
+	background: #5e5b5c; /* Old browsers */
+	background: #5e5b5c -moz-linear-gradient(#5e5b5c,#323232);
+	background: #5e5b5c -o-linear-gradient(#5e5b5c,#323232);
+	background: #5e5b5c -ms-linear-gradient(#5e5b5c,#323232);
+	background: #5e5b5c -webkit-linear-gradient(#5e5b5c,#323232);
+	background: #5e5b5c linear-gradient(#5e5b5c,#323232);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='5e5b5c', endColorstr='#323232',GradientType=0 ); /* IE6-9 */
+}
+
 .slideBox + .pagination {
 	margin: 0;
 	width: 100%;
@@ -153,7 +167,7 @@ a.thumb figcaption {
 .slideBox + .pagination ul {
 	width: 100%;
 	padding: 5px 50px 7px;
-	border-radius: 0;
+	border-radius: 0 0 .5em .5em;
 	text-align: center;
 background: #5e5b5c; /* Old browsers */
 background: #5e5b5c -moz-linear-gradient(#5e5b5c,#323232);

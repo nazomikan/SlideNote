@@ -3,8 +3,9 @@ extends ../layout
 block content
   .jumbotron
     .container
-      h2 #{row.title}
       #slide-player.slidePlayer
+        .slideCaption
+          span #{row.title}
         .slideBox#thumbnail
           each slide, idx in row.slides
             if idx === 0
